@@ -6,292 +6,2007 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>Kenali Kebiasaanmu</title>
+    <title>Sabotase Diri: Materi Interaktif</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
+        --bg: #f3f6ff;
+        --surface: #fff;
+        --ink: #111a3d;
+        --muted: #525d82;
+        --line: #d5dcf2;
+        --blue: #2740d9;
+        --blue-ink: #fff;
+        --navy: #0f1b4d;
+        --navy-ink: #eef1ff;
+        --yellow: #ffc933;
+        --yellow-ink: #2a2000;
+        --warm: #fff6dc;
+        --warm-line: #f0d98a;
+        --head: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+        --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
         box-sizing: border-box;
         padding-top: env(safe-area-inset-top, 0px);
         padding-bottom: env(safe-area-inset-bottom, 0px);
-        --bg: #fdf8f1;
-        --card: #fff;
-        --text: #2b2a33;
-        --muted: #6b6878;
-        --line: #e6dfd3;
-        --accent: #6c5ce7;
         color-scheme: light;
       }
-
       @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) {
-          --bg: #17161d;
-          --card: #22212b;
-          --text: #f1eff7;
-          --muted: #a9a5b8;
-          --line: #37354a;
-          --accent: #9a8cff;
+          --bg: #0b1230;
+          --surface: #141d46;
+          --ink: #eaeeff;
+          --muted: #a7b1d8;
+          --line: #2a3566;
+          --blue: #6f86ff;
+          --blue-ink: #0b1230;
+          --navy: #060b20;
+          --navy-ink: #eaeeff;
+          --warm: #2b2610;
+          --warm-line: #5b4d16;
           color-scheme: dark;
         }
       }
-
       :root[data-theme="dark"] {
-        --bg: #17161d;
-        --card: #22212b;
-        --text: #f1eff7;
-        --muted: #a9a5b8;
-        --line: #37354a;
-        --accent: #9a8cff;
+        --bg: #0b1230;
+        --surface: #141d46;
+        --ink: #eaeeff;
+        --muted: #a7b1d8;
+        --line: #2a3566;
+        --blue: #6f86ff;
+        --blue-ink: #0b1230;
+        --navy: #060b20;
+        --navy-ink: #eaeeff;
+        --warm: #2b2610;
+        --warm-line: #5b4d16;
         color-scheme: dark;
       }
-
       html {
-        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 4.2rem);
+        scroll-behavior: smooth;
       }
-
-      * {
-        box-sizing: border-box;
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
       }
-
       body {
         margin: 0;
         background: var(--bg);
-        color: var(--text);
-        font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
-        line-height: 1.5;
+        color: var(--ink);
+        font: 400 1.05rem/1.65 var(--body);
       }
-
-      main {
-        max-width: 560px;
+      .wrap {
+        max-width: 44rem;
         margin: 0 auto;
-        padding: 20px 16px 40px;
+        padding: 0 1.25rem;
       }
-
-      .card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: 22px;
+      h1,
+      h2,
+      h3 {
+        font-family: var(--head);
+        line-height: 1.1;
+        margin: 0;
+        letter-spacing: -0.02em;
       }
-
-      h1 {
-        font-size: 1.6rem;
-        margin: 0 0 8px;
-      }
-
       h2 {
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+      }
+      h3 {
         font-size: 1.15rem;
-        margin: 0 0 16px;
-        line-height: 1.4;
+        font-weight: 700;
       }
-
       p {
-        margin: 0 0 12px;
+        margin: 0 0 1rem;
+        max-width: 62ch;
+      }
+      section {
+        padding: 3.2rem 0;
+      }
+      :focus-visible {
+        outline: 3px solid var(--yellow);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      button {
+        font: inherit;
+        color: inherit;
       }
 
-      .muted {
+      /* nav */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+      nav .wrap {
+        display: flex;
+        gap: 0.4rem;
+        overflow-x: auto;
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+        scrollbar-width: none;
+      }
+      nav a {
+        flex: none;
+        padding: 0.4rem 0.85rem;
+        border-radius: 99px;
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      nav a:hover {
+        background: var(--surface);
+        color: var(--ink);
+      }
+
+      /* hero */
+      .hero {
+        padding: 3rem 0 2.5rem;
+        background: linear-gradient(180deg, var(--navy) 0, var(--navy) 100%);
+        color: var(--navy-ink);
+      }
+      .tag {
+        display: inline-block;
+        background: var(--yellow);
+        color: var(--yellow-ink);
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 99px;
+        margin-bottom: 1.1rem;
+      }
+      h1 {
+        font-size: clamp(3rem, 13vw, 5.4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+      .hero p {
+        color: #c9d1f5;
+        font-size: 1.15rem;
+      }
+      .btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin: 1.4rem 0 2rem;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 1.4rem;
+        border-radius: 0.7rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: 0;
+        cursor: pointer;
+        font-family: var(--body);
+      }
+      .btn.y {
+        background: var(--yellow);
+        color: var(--yellow-ink);
+      }
+      .btn.o {
+        background: transparent;
+        color: var(--navy-ink);
+        border: 1.5px solid #5a6aa8;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+      }
+      .chip {
+        background: var(--surface);
+        color: var(--ink);
+        padding: 0.55rem 1rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+      }
+      .chip:nth-child(odd) {
+        transform: rotate(-2.5deg);
+      }
+      .chip:nth-child(even) {
+        transform: rotate(2deg);
+        background: var(--yellow);
+        color: var(--yellow-ink);
+      }
+
+      /* apa */
+      .kicker {
+        font-weight: 700;
+        color: var(--blue);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+      .cards {
+        display: grid;
+        gap: 0.9rem;
+        margin: 1.4rem 0;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.2rem;
+      }
+      .card h3 {
+        margin-bottom: 0.4rem;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .dark {
+        background: var(--navy);
+        color: var(--navy-ink);
+        border-radius: 1rem;
+        padding: 1.3rem;
+      }
+      .dark h3 {
+        margin-bottom: 0.8rem;
+      }
+      .dark ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.5rem;
+      }
+      .dark li {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 0.6rem;
+        padding: 0.65rem 0.9rem;
+      }
+
+      /* pola */
+      .stepsb {
+        display: grid;
+        gap: 0.9rem;
+        margin: 1.4rem 0;
+      }
+      .sb {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.2rem 1.2rem 1.2rem 4.2rem;
+        position: relative;
+      }
+      .sb .n {
+        position: absolute;
+        left: 1.1rem;
+        top: 1.1rem;
+        font: 800 1.7rem var(--head);
+        color: var(--blue);
+      }
+      .sb p {
+        margin: 0.3rem 0 0;
+        color: var(--muted);
+      }
+      .callout {
+        background: var(--warm);
+        border: 1px solid var(--warm-line);
+        border-radius: 1rem;
+        padding: 1.1rem 1.2rem;
+      }
+      .callout p {
+        margin: 0;
+      }
+
+      /* jenis */
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.2rem 0;
+      }
+      .filters button {
+        border: 1.5px solid var(--line);
+        background: var(--surface);
+        padding: 0.45rem 1rem;
+        border-radius: 99px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .filters button[aria-pressed="true"] {
+        background: var(--blue);
+        color: var(--blue-ink);
+        border-color: var(--blue);
+      }
+      .grid {
+        display: grid;
+        gap: 0.9rem;
+      }
+      .t {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.2rem;
+      }
+      .t header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.8rem;
+        margin-bottom: 0.5rem;
+      }
+      .t small {
+        display: block;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .badge {
+        flex: none;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 0.25rem 0.65rem;
+        border-radius: 99px;
+        background: var(--warm);
+        border: 1px solid var(--warm-line);
+      }
+      .t p {
+        margin: 0 0 0.7rem;
+      }
+      .ex {
+        color: var(--muted);
+        border-left: 3px solid var(--yellow);
+        padding-left: 0.8rem;
+        margin: 0;
+      }
+
+      /* cek & kuis */
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.2rem;
+      }
+      .panel label {
+        display: flex;
+        gap: 0.8rem;
+        padding: 0.65rem 0;
+        border-bottom: 1px solid var(--line);
+        cursor: pointer;
+      }
+      .panel label:last-of-type {
+        border-bottom: 0;
+      }
+      .panel input[type="checkbox"] {
+        width: 1.3rem;
+        height: 1.3rem;
+        margin-top: 0.25rem;
+        flex: none;
+        accent-color: var(--blue);
+      }
+      .score {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid var(--line);
+      }
+      .score b {
+        font: 800 2.4rem var(--head);
+        color: var(--blue);
+      }
+      .q {
+        display: grid;
+        gap: 0.6rem;
+        margin: 1rem 0;
+      }
+      .q button {
+        text-align: left;
+        background: var(--bg);
+        border: 1.5px solid var(--line);
+        border-radius: 0.7rem;
+        padding: 0.8rem 1rem;
+        cursor: pointer;
+      }
+      .q button:hover {
+        border-color: var(--blue);
+      }
+      .prog {
+        font-weight: 600;
         color: var(--muted);
         font-size: 0.9rem;
       }
-
-      button {
-        font: inherit;
-        cursor: pointer;
+      .bar {
+        height: 0.5rem;
+        background: var(--line);
+        border-radius: 99px;
+        overflow: hidden;
+        margin: 0.4rem 0 1rem;
       }
-
-      .btn {
-        background: var(--accent);
-        color: #fff;
-        border: 0;
-        border-radius: 14px;
-        padding: 12px 22px;
-        font-weight: 700;
+      .bar div {
+        height: 100%;
+        background: var(--yellow);
+        width: 0;
+        transition: width 0.3s;
       }
-
-      .opt {
+      .hidden {
+        display: none;
+      }
+      .t header {
+        flex-wrap: wrap;
+      }
+      .mh {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+      }
+      .mas {
+        flex: none;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        display: grid;
+        place-items: center;
+      }
+      .mas svg {
+        width: 90%;
+        height: 90%;
+        display: block;
+      }
+      .zmascot svg {
+        width: 88%;
+        height: 88%;
+        display: block;
+      }
+      .zopt {
         display: block;
         width: 100%;
         text-align: left;
         background: var(--bg);
-        color: var(--text);
+        color: var(--ink);
         border: 2px solid var(--line);
-        border-radius: 14px;
-        padding: 13px 15px;
-        margin-bottom: 10px;
+        border-radius: 0.9rem;
+        padding: 0.8rem 1rem;
+        margin-bottom: 0.6rem;
+        cursor: pointer;
       }
-
-      .opt:hover,
-      .opt:focus {
-        border-color: var(--accent);
+      .zopt:hover {
+        border-color: var(--blue);
       }
-
-      .bar {
-        height: 8px;
-        background: var(--line);
-        border-radius: 8px;
-        margin-bottom: 16px;
-        overflow: hidden;
+      .zopt.sel {
+        border-color: var(--blue);
+        background: color-mix(in srgb, var(--blue) 14%, var(--bg));
       }
-
-      .bar i {
+      .zback,
+      .zlink {
+        background: none;
+        border: 0;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 0.5rem 0;
+      }
+      .zback {
+        color: var(--muted);
+      }
+      .zlink {
+        color: var(--blue);
+        flex: none;
+      }
+      .zrv {
+        display: flex;
+        gap: 0.6rem;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--line);
+        padding: 0.6rem 0;
+      }
+      .zrv small {
         display: block;
-        height: 100%;
-        background: var(--accent);
-        width: 0;
-        transition: width 0.3s;
+        color: var(--muted);
+        font-weight: 700;
       }
-
-      .mascot {
-        width: 150px;
-        height: 150px;
+      .zmascot {
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
-        margin: 0 auto 12px;
+        margin: 0 auto 0.8rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 4rem;
-        overflow: hidden;
+        font-size: 3.4rem;
       }
-
-      .mascot img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      .center {
-        text-align: center;
-      }
-
-      .tag {
-        display: inline-block;
-        font-size: 0.75rem;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        padding: 3px 10px;
-        border-radius: 99px;
-        color: #fff;
-        margin-bottom: 6px;
-      }
-
-      .row {
+      .zrow {
         border-left: 4px solid var(--c);
-        padding: 2px 0 2px 12px;
-        margin-bottom: 12px;
+        padding: 0.1rem 0 0.1rem 0.8rem;
+        margin-bottom: 0.8rem;
       }
-
-      .row b {
+      .zrow b {
         display: block;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+        font-size: 0.85rem;
         color: var(--muted);
       }
-
-      .second {
-        margin-top: 18px;
-        padding-top: 16px;
+      .zsecond {
+        margin-top: 1.2rem;
+        padding-top: 1rem;
         border-top: 1px dashed var(--line);
         display: flex;
-        gap: 12px;
+        gap: 0.8rem;
         align-items: center;
       }
-
-      .second .mascot {
-        width: 64px;
-        height: 64px;
-        font-size: 1.8rem;
+      .zsecond .zmascot {
+        width: 56px;
+        height: 56px;
+        font-size: 1.6rem;
         margin: 0;
         flex: none;
       }
-
-      .back {
-        background: none;
-        border: 0;
+      .rtag {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: 800;
+        padding: 0.2rem 0.7rem;
+        border-radius: 99px;
+        color: #fff;
+        margin-bottom: 0.4rem;
+      }
+      .zc {
+        text-align: center;
+      }
+      .zplan {
+        margin-top: 1.2rem;
+        padding: 1rem 1.1rem;
+        background: var(--warm);
+        border: 1px solid var(--warm-line);
+        border-radius: 1rem;
+      }
+      .zplan h4 {
+        font: 800 1.15rem var(--head);
+        margin: 0 0 0.6rem;
+      }
+      .zplan p {
+        margin: 0 0 0.6rem;
+        font-size: 0.98rem;
+      }
+      .zplan ol {
+        margin: 0 0 0.8rem;
+        padding-left: 1.2rem;
+      }
+      .zplan li {
+        margin-bottom: 0.4rem;
+      }
+      .zsay {
+        border-left: 3px solid var(--yellow);
+        padding-left: 0.7rem;
+      }
+      .zplan .zhint {
         color: var(--muted);
-        font-weight: 700;
-        padding: 8px 0;
-        margin-top: 4px;
+        font-size: 0.9rem;
+        margin: 0;
       }
-
-      .back:hover {
-        color: var(--accent);
+      .zh {
+        font-size: 1.2rem;
+        margin: 0 0 1rem;
+        line-height: 1.4;
       }
-
-      .opt.sel {
-        border-color: var(--accent);
-        background: color-mix(in srgb, var(--accent) 14%, var(--bg));
+      footer {
+        background: var(--navy);
+        color: #c9d1f5;
+        padding: 2rem 0 2.5rem;
+        font-size: 0.95rem;
       }
-
-      .rv {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        justify-content: space-between;
-        border-bottom: 1px solid var(--line);
-        padding: 10px 0;
+      footer p {
+        margin: 0;
       }
-
-      .rv small {
-        color: var(--muted);
+      @media (min-width: 40rem) {
+        .cards,
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .dark {
+          grid-column: 1/-1;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .bar div {
+          transition: none;
+        }
+      }
+      :root {
+        --bg: #f2f5fc;
+        --alt: #e6ebf7;
+        --surface: #fff;
+        --ink: #0f1a33;
+        --muted: #4f5d7d;
+        --line: #d3dbee;
+        --blue: #2457e6;
+        --blue-ink: #fff;
+        --yellow: #ffd166;
+        --yellow-ink: #2a2000;
+        --warm: #fff4d1;
+        --warm-line: #efd68b;
+        --ic: #e4ecff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0f1726;
+          --alt: #0a111f;
+          --surface: #18233a;
+          --ink: #eaf0fb;
+          --muted: #a9b6cf;
+          --line: #26324c;
+          --blue: #4d86ff;
+          --blue-ink: #07112a;
+          --warm: #2b2a14;
+          --warm-line: #58531f;
+          --ic: #1f2d4d;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0f1726;
+        --alt: #0a111f;
+        --surface: #18233a;
+        --ink: #eaf0fb;
+        --muted: #a9b6cf;
+        --line: #26324c;
+        --blue: #4d86ff;
+        --blue-ink: #07112a;
+        --warm: #2b2a14;
+        --warm-line: #58531f;
+        --ic: #1f2d4d;
+      }
+      #pola,
+      #cek {
+        background: var(--alt) !important;
+        border-block: 0 !important;
+      }
+      nav.top {
+        background: #0a1224;
+        border-bottom: 1px solid #1f2b45;
+      }
+      nav.top .wrap {
         display: block;
-        font-weight: 700;
+        overflow: visible;
+        padding-top: 0.8rem;
+        padding-bottom: 0;
       }
-
-      .link {
-        background: none;
-        border: 0;
-        color: var(--accent);
-        font-weight: 700;
+      .bar2 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font: 700 1.05rem var(--head);
+        color: #f1f4ff;
+      }
+      .logo {
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 0.8rem;
+        background: #2457e6;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 1.2rem;
+      }
+      .tgl {
+        width: 2.7rem;
+        height: 2.7rem;
+        border-radius: 0.8rem;
+        border: 1px solid #33425f;
+        background: transparent;
+        color: #e8eeff;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+      .links {
+        display: flex;
+        gap: 0.2rem;
+        overflow-x: auto;
+        padding: 0.6rem 0 0.7rem;
+        scrollbar-width: none;
+      }
+      .links a {
         flex: none;
+        color: #b8c4de;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 0.6rem;
       }
-
-      .hidden {
+      .links a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .hero {
+        background: linear-gradient(
+          165deg,
+          #1b46c9 0%,
+          #2563eb 50%,
+          #3b82f6 100%
+        );
+        color: #fff;
+        padding: 3.2rem 0 3.5rem;
+      }
+      .eyebrow {
+        color: var(--yellow);
+        font-weight: 800;
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+      .hero h1 {
+        font-size: clamp(3.4rem, 17vw, 6.4rem);
+        line-height: 0.95;
+        letter-spacing: -0.035em;
+        margin-bottom: 1.4rem;
+      }
+      .hero h1 span {
+        color: var(--yellow);
+      }
+      .hero .lead {
+        color: #e3ebff;
+        font-size: 1.15rem;
+        line-height: 1.7;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        border-radius: 0.9rem;
+      }
+      .btn.o {
+        border-color: rgba(255, 255, 255, 0.55);
+        color: #fff;
+      }
+      .orbit {
+        position: relative;
+        width: min(100%, 22rem);
+        aspect-ratio: 1;
+        margin: 2.4rem auto 0;
+      }
+      .orbit::before,
+      .orbit::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+      .orbit::before {
+        inset: 0;
+      }
+      .orbit::after {
+        inset: 12%;
+        border-style: dashed;
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+      .core {
+        position: absolute;
+        inset: 26%;
+        border-radius: 50%;
+        background: var(--yellow);
+        color: #1a1a2e;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 1rem;
+        font: 800 1.1rem/1.2 var(--head);
+        transform: rotate(-8deg);
+      }
+      .fl {
+        position: absolute;
+        background: #fff;
+        color: #14213d;
+        font-weight: 800;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.9rem;
+        border-radius: 0.8rem;
+        box-shadow: 0 6px 18px rgba(8, 20, 70, 0.3);
+      }
+      .fl.a {
+        top: 10%;
+        left: 2%;
+        transform: rotate(-8deg);
+      }
+      .fl.b {
+        right: -2%;
+        top: 44%;
+        transform: rotate(7deg);
+      }
+      .fl.c {
+        left: 6%;
+        bottom: 12%;
+        transform: rotate(-6deg);
+      }
+      h2 {
+        font-size: clamp(2rem, 7vw, 2.7rem);
+      }
+      .kicker {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+      }
+      .card,
+      .sb,
+      .t,
+      .panel,
+      .callout,
+      .dark {
+        border-radius: 1.4rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .ic {
+        width: 3.6rem;
+        height: 3.6rem;
+        border-radius: 1rem;
+        background: var(--ic);
+        color: var(--blue);
+        display: grid;
+        place-items: center;
+        margin-bottom: 1.1rem;
+      }
+      .ic svg {
+        width: 1.7rem;
+        height: 1.7rem;
+      }
+      .dark {
+        background: #0a1224;
+        border: 1px solid #1f2b45;
+        padding: 1.5rem;
+        color: #eef2ff;
+      }
+      .dark h3 {
+        color: var(--yellow);
+        font-size: 1.3rem;
+      }
+      .dark li {
+        background: transparent;
+        border: 1.5px solid rgba(255, 255, 255, 0.28);
+        border-radius: 99px;
+        padding: 0.55rem 1rem;
+      }
+      details {
+        border-radius: 1rem;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+        }
+      }
+      @keyframes pop {
+        0% {
+          transform: scale(0.3) rotate(-14deg);
+          opacity: 0;
+        }
+        60% {
+          transform: scale(1.12) rotate(4deg);
+          opacity: 1;
+        }
+        100% {
+          transform: none;
+          opacity: 1;
+        }
+      }
+      @keyframes bob {
+        50% {
+          translate: 0 -10px;
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes beat {
+        50% {
+          scale: 1.06;
+        }
+      }
+      @keyframes drift {
+        50% {
+          background-position: 100% 100%;
+        }
+      }
+      @keyframes wiggle {
+        25% {
+          transform: rotate(-9deg) translateY(-6px);
+        }
+        75% {
+          transform: rotate(9deg) translateY(-6px);
+        }
+      }
+      @keyframes grow {
+        from {
+          width: 0;
+        }
+      }
+      @keyframes bump {
+        50% {
+          transform: scale(1.3);
+        }
+      }
+      @keyframes fall {
+        to {
+          transform: translate(var(--x), 110vh) rotate(var(--r));
+        }
+      }
+      .hero {
+        background-size: 200% 200%;
+        animation: drift 14s ease-in-out infinite;
+      }
+      .eyebrow {
+        animation: rise 0.6s 0.05s both;
+      }
+      .hero h1 {
+        animation: rise 0.7s 0.15s both;
+      }
+      .hero h1 span {
+        display: inline-block;
+        animation: pop 0.8s 0.6s both;
+      }
+      .hero .lead {
+        animation: rise 0.7s 0.35s both;
+      }
+      .btns {
+        animation: rise 0.7s 0.5s both;
+      }
+      .orbit {
+        animation: rise 0.9s 0.65s both;
+      }
+      .orbit::before {
+        animation: spin 26s linear infinite reverse;
+        background: radial-gradient(
+          circle at 50% calc(100% - 4px),
+          #fff 0 4px,
+          transparent 5px
+        );
+      }
+      .orbit::after {
+        animation: spin 32s linear infinite;
+        background: radial-gradient(
+          circle at 50% 4px,
+          var(--yellow) 0 5px,
+          transparent 6px
+        );
+      }
+      .core {
+        animation: beat 3s ease-in-out infinite;
+      }
+      .fl.a {
+        animation: bob 3.6s ease-in-out infinite;
+      }
+      .fl.b {
+        animation: bob 4.2s ease-in-out -1.2s infinite;
+      }
+      .fl.c {
+        animation: bob 3.9s ease-in-out -2.2s infinite;
+      }
+      .btn {
+        transition:
+          translate 0.15s,
+          scale 0.15s;
+      }
+      .btn:hover {
+        translate: 0 -3px;
+      }
+      .btn:active {
+        scale: 0.96;
+      }
+      .logo {
+        transition: transform 0.5s;
+      }
+      .brand:hover .logo {
+        transform: rotate(180deg);
+      }
+      .t:hover .mas svg {
+        animation: wiggle 0.6s;
+      }
+      .zmascot {
+        animation: bob 3s ease-in-out 0.8s infinite;
+      }
+      .zmascot svg {
+        animation: pop 0.7s both;
+      }
+      .zopt {
+        animation: rise 0.35s both;
+        transition:
+          translate 0.15s,
+          border-color 0.15s,
+          scale 0.15s;
+      }
+      .zopt:hover {
+        translate: 6px 0;
+      }
+      .zopt:active {
+        scale: 0.98;
+      }
+      .bar div {
+        animation: grow 0.6s ease-out;
+      }
+      .zplan {
+        animation: rise 0.6s 0.3s both;
+      }
+      .score b {
+        display: inline-block;
+      }
+      .bump {
+        animation: bump 0.35s;
+      }
+      .conf {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 50;
+      }
+      .conf i {
+        position: absolute;
+        top: -16px;
+        width: 9px;
+        height: 14px;
+        border-radius: 2px;
+        animation: fall 1.8s ease-in forwards;
+      }
+      .reveal {
+        opacity: 0;
+        translate: 0 28px;
+        transition:
+          opacity 0.6s ease,
+          translate 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        translate: 0 0;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal {
+          opacity: 1 !important;
+          translate: none !important;
+        }
+      }
+      .tools {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .tgl {
+        width: auto;
+        min-width: 2.7rem;
+        padding: 0 0.75rem;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+      .tx {
         display: none;
+      }
+      @media (min-width: 34rem) {
+        .tx {
+          display: inline;
+        }
+      }
+      .links {
+        position: relative;
+      }
+      .links a.cur {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.14);
+      }
+      .btn.o2 {
+        background: transparent;
+        border: 1.5px solid var(--line);
+        color: var(--ink);
+      }
+      .zc .btn {
+        margin: 0.2rem;
+      }
+      .zhint {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .cchip {
+        display: inline-block;
+        background: var(--ic);
+        color: var(--ink);
+        border-radius: 99px;
+        padding: 0.3rem 0.8rem;
+        margin: 0.2rem 0.3rem 0.2rem 0;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .trkh {
+        margin: 0.4rem 0 0.6rem;
+        font-size: 0.95rem;
+      }
+      .trk {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.35rem;
+        margin-bottom: 0.9rem;
+      }
+      .trk button {
+        aspect-ratio: 1;
+        border-radius: 0.7rem;
+        border: 1.5px solid var(--warm-line);
+        background: transparent;
+        color: inherit;
+        font: 800 1rem var(--head);
+        cursor: pointer;
+      }
+      .trk button.on {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: var(--blue-ink);
+      }
+      .zbars {
+        margin-top: 1.2rem;
+      }
+      .zbars h4 {
+        font: 800 1.05rem var(--head);
+        margin: 0 0 0.6rem;
+      }
+      .zb {
+        display: grid;
+        grid-template-columns: 9rem 1fr 1.2rem;
+        gap: 0.6rem;
+        align-items: center;
+        margin-bottom: 0.35rem;
+        font-size: 0.9rem;
+      }
+      .zt {
+        height: 0.6rem;
+        background: var(--line);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .zt i {
+        display: block;
+        height: 100%;
+        border-radius: 99px;
+        animation: grow 0.6s ease-out;
+      }
+      .up {
+        position: fixed;
+        right: 1rem;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 0;
+        background: var(--yellow);
+        color: var(--yellow-ink);
+        font-size: 1.3rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+        z-index: 20;
+      }
+      .up[hidden] {
+        display: none;
+      }
+      .hero {
+        overflow-x: clip;
+      }
+      html {
+        scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 8rem);
+      }
+      .filters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .filters button {
+        width: 100%;
+        white-space: nowrap;
+        text-align: center;
+        padding: 0.55rem 0.6rem;
+      }
+      @media (min-width: 40rem) {
+        .filters {
+          grid-template-columns: repeat(4, auto);
+          justify-content: start;
+        }
+        .filters button {
+          padding: 0.45rem 1rem;
+        }
+      }
+      .t header {
+        display: block;
+      }
+      .t .badge {
+        display: inline-block;
+        margin-bottom: 0.8rem;
+      }
+      .zopt.none {
+        border-style: dashed;
+        color: var(--muted);
+      }
+      .links {
+        touch-action: pan-x pan-y pinch-zoom;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+      .panel {
+        overflow-anchor: none;
+      }
+      .fl.b {
+        right: 0;
+      }
+      html[data-motion="off"] *,
+      html[data-motion="off"] *::before,
+      html[data-motion="off"] *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      html[data-motion="off"] .reveal {
+        opacity: 1 !important;
+        translate: none !important;
+      }
+      @media (max-width: 23rem) {
+        .fl {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.7rem;
+        }
+        .core {
+          font-size: 0.95rem;
+        }
+        .zb {
+          grid-template-columns: 6.5rem 1fr 1rem;
+        }
+      }
+      .credit {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        margin-top: 1.6rem;
+        padding-top: 1.6rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .credit .logo-b {
+        flex: none;
+        width: 5.6rem;
+        height: 5.6rem;
+        background: #fff;
+        border-radius: 1.3rem;
+        padding: 0.3rem;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      }
+      .credit img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border-radius: 1rem;
+      }
+      .credit .by {
+        margin: 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9fb0dd;
+      }
+      .credit .names {
+        margin: 0.15rem 0 0.25rem;
+        font: 700 1.05rem/1.35 var(--head);
+        color: #fff;
+      }
+      .credit .team {
+        margin: 0;
+        color: var(--yellow);
+        font-weight: 700;
+      }
+      @media (min-width: 40rem) {
+        .credit .logo-b {
+          width: 6.8rem;
+          height: 6.8rem;
+        }
       }
     </style>
   </head>
-
   <body>
-    <main>
-      <section id="start" class="card center">
-        <div class="mascot" style="background: #e9e5ff">🧩</div>
-        <h1>Kenali Kebiasaanmu</h1>
+    <nav class="top" aria-label="Navigasi bagian">
+      <div class="wrap">
+        <div class="bar2">
+          <div class="brand">
+            <span class="logo" aria-hidden="true">✳</span
+            ><span>Materi Sabotase Diri</span>
+          </div>
+          <div class="tools">
+            <button
+              class="tgl"
+              id="mtg"
+              aria-pressed="true"
+              aria-label="Matikan animasi"
+              title="Matikan animasi"
+            >
+              ✦<span class="tx"> Gerak: hidup</span></button
+            ><button
+              class="tgl"
+              id="tgl"
+              aria-label="Ganti tema terang atau gelap"
+              title="Ganti tema"
+            >
+              ◐<span class="tx"> Tema</span>
+            </button>
+          </div>
+        </div>
+        <div class="links">
+          <a href="#apa">Konsep</a><a href="#pola">Asal usul</a
+          ><a href="#jenis">Jenis saboter</a><a href="#cek">Cek diri</a
+          ><a href="#kuis">Kuis</a><a href="#sumber">Sumber</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="wrap">
+        <div class="eyebrow">✦ Materi belajar · Refleksi diri</div>
+        <h1>Sabotase<br /><span>Diri.</span></h1>
+        <p class="lead">
+          Pelajari kebiasaan yang diam-diam menggagalkan tujuanmu, kenali
+          sembilan saboter di dalam dirimu, lalu latih respons yang lebih sadar.
+        </p>
+        <div class="btns">
+          <a class="btn y" href="#apa"
+            >Mulai belajar <span aria-hidden="true">↓</span></a
+          ><a class="btn o" href="#cek"
+            >Cek diriku <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div class="orbit" aria-hidden="true">
+          <div class="core">“Aku boleh belajar dari kebiasaanku.”</div>
+          <span class="fl a">Besok saja?</span
+          ><span class="fl b">Belum sempurna?</span
+          ><span class="fl c">Takut gagal?</span>
+        </div>
+      </div>
+    </header>
+
+    <section id="apa">
+      <div class="wrap">
+        <div class="kicker">01 / Memahami konsep</div>
+        <h2>Apa itu sabotase diri?</h2>
+        <p>
+          Sabotase diri adalah perilaku atau pikiran yang menjauhkanmu dari
+          tujuanmu sendiri, sering tanpa kamu sadari.
+        </p>
+        <div class="cards">
+          <div class="card">
+            <span class="ic"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="6" cy="6" r="2.5" />
+                <circle cx="18" cy="18" r="2.5" />
+                <path d="M8.5 6H15a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h6.5" /></svg
+            ></span>
+            <h3>Sabotase diri</h3>
+            <p>
+              Tindakan yang merugikan tujuan jangka panjang demi rasa aman atau
+              nyaman jangka pendek, seperti menunda, ragu berlebihan, atau
+              menarik diri.
+            </p>
+          </div>
+          <div class="card">
+            <span class="ic"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3l7 3v5c0 5-3.2 8.2-7 10-3.8-1.8-7-5-7-10V6z"
+                /></svg
+            ></span>
+            <h3>Saboter</h3>
+            <p>
+              Pola pikir otomatis yang menjadi “suara” di balik sabotase itu.
+              Dalam materi ini, ada sembilan jenisnya, masing-masing punya cara
+              kerja sendiri.
+            </p>
+          </div>
+          <div class="dark">
+            <h3>Seperti apa contohnya?</h3>
+            <ul>
+              <li>
+                Tahu harus mulai tugas, tetapi malah membereskan hal lain.
+              </li>
+              <li>Menolak kesempatan karena yakin belum layak.</li>
+              <li>
+                Merevisi hasil kerja berulang kali sampai tidak pernah dikirim.
+              </li>
+              <li>Mengiyakan semua permintaan lalu kelelahan sendiri.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="pola"
+      style="background: var(--surface); border-block: 1px solid var(--line)"
+    >
+      <div class="wrap">
+        <div class="kicker">02 / Asal mula pola</div>
+        <h2>Pola lama, situasi baru.</h2>
+        <p>
+          Saboter biasanya bukan hal baru. Mereka dulu pernah berguna, lalu
+          terus dipakai setelah situasinya berubah.
+        </p>
+        <div class="stepsb">
+          <div class="sb">
+            <span class="n">01</span>
+            <h3>Masa kecil</h3>
+            <p>
+              Kita menyesuaikan diri dengan lingkungan. Ada yang belajar
+              menurut, menjadi pintar, diam, atau waspada supaya terasa aman.
+            </p>
+          </div>
+          <div class="sb">
+            <span class="n">02</span>
+            <h3>Strategi bertahan</h3>
+            <p>
+              Cara itu berhasil, jadi otak mengulangnya. Lama-lama ia menjadi
+              kebiasaan otomatis yang tidak lagi kita pilih.
+            </p>
+          </div>
+          <div class="sb">
+            <span class="n">03</span>
+            <h3>Masa dewasa</h3>
+            <p>
+              Situasinya sudah berbeda, tetapi pola yang sama tetap jalan. Yang
+              dulu melindungi, kini justru membatasi.
+            </p>
+          </div>
+        </div>
+        <div class="callout">
+          <p>
+            <b>Penting diingat:</b> saboter tidak berarti kamu cacat. Mereka
+            adalah strategi yang pernah membantumu. Tugasmu bukan membencinya,
+            melainkan menyadarinya dan memilih respons yang lebih sesuai
+            sekarang.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="jenis">
+      <div class="wrap">
+        <div class="kicker">03 / Jenis saboter</div>
+        <h2>Sembilan jenis saboter.</h2>
+        <p>
+          Setiap jenis punya cara kerja dan suara khas. Saring berdasarkan
+          kecenderungan utamanya. Pengelompokan ini hanya untuk memudahkan
+          belajar, bukan bagian baku dari teorinya.
+        </p>
+        <div
+          class="filters"
+          id="filters"
+          role="group"
+          aria-label="Saring jenis"
+        ></div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section
+      id="cek"
+      style="background: var(--surface); border-block: 1px solid var(--line)"
+    >
+      <div class="wrap">
+        <div class="kicker">04 / Refleksi diri</div>
+        <h2>Cek diri, tanpa menghakimi.</h2>
+        <p>
+          Centang pernyataan yang terasa sering terjadi padamu. Tiap pernyataan
+          mewakili satu jenis saboter, jadi hasilnya menunjukkan tipe yang
+          mungkin kamu miliki. Kuis di bawah membantu memastikan mana yang
+          paling dominan. Ini alat refleksi, bukan diagnosis.
+        </p>
+        <div class="panel" id="cekbox"></div>
+      </div>
+    </section>
+
+    <section id="kuis">
+      <div class="wrap">
+        <div class="kicker">05 / Kuis</div>
+        <h2>Kenali kebiasaanmu.</h2>
         <p>
           Jawab 9 situasi sehari-hari dengan pilihan yang paling mirip dirimu.
-          Tidak ada jawaban benar atau salah, ini hanya alat untuk mengenal
-          diri.
+          Tidak ada jawaban benar atau salah.
         </p>
-        <button class="btn" onclick="startQuiz()">Mulai</button>
-      </section>
+        <div class="panel" id="zbox"></div>
+      </div>
+    </section>
 
-      <section id="quiz" class="card hidden">
-        <div class="bar"><i id="prog"></i></div>
-        <p class="muted" id="count"></p>
-        <h2 id="q"></h2>
-        <div id="opts"></div>
-        <button class="back hidden" id="back" onclick="goBack()">
-          ← Kembali ke soal sebelumnya
-        </button>
-      </section>
-
-      <section id="review" class="card hidden"></section>
-
-      <section id="result" class="card hidden"></section>
-
-      <p class="muted center" style="margin-top: 18px">
-        Ini alat refleksi diri, bukan tes psikologis atau diagnosis. Kerangka
-        tipe diadaptasi dari "Saboteurs" oleh Shirzad Chamine (Positive
-        Intelligence). Jika kamu merasa sering cemas atau sedih, bicaralah
-        dengan guru BK atau orang dewasa yang kamu percaya.
-      </p>
-    </main>
+    <section id="sumber">
+      <div class="wrap">
+        <div class="kicker">06 / Tentang materi</div>
+        <h2>Dari mana materi ini?</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Kerangka sembilan saboter</h3>
+            <p>
+              Diadaptasi dari konsep “saboteur” oleh Shirzad Chamine dalam
+              bukunya <i>Positive Intelligence</i>, yang berasal dari praktik
+              coaching. Penjelasan dan contoh di halaman ini ditulis ulang
+              dengan kata-kata sendiri.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Bukan tes baku</h3>
+            <p>
+              Sembilan tipe ini bukan alat ukur psikologi yang tervalidasi.
+              Hasilnya cocok untuk bahan renungan, bukan diagnosis atau
+              penilaian kepribadian.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Kapan perlu bantuan</h3>
+            <p>
+              Jika cemas, sedih, atau kebiasaan menghindar sangat mengganggu
+              belajar, kerja, atau hubunganmu, bicaralah dengan guru BK,
+              psikolog, atau tenaga profesional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <button class="up" id="up" aria-label="Kembali ke atas" hidden>↑</button>
+    <footer>
+      <div class="wrap">
+        <p>
+          Materi edukasi umum, bukan tes psikologis atau diagnosis. Kerangka
+          tipe pada kuis diadaptasi dari “Saboteurs” oleh Shirzad Chamine
+          (Positive Intelligence). Jika kamu sering merasa cemas atau sedih,
+          bicaralah dengan guru BK, psikolog, atau orang dewasa yang kamu
+          percaya.
+        </p>
+        <div class="credit">
+          <div class="logo-b">
+            <img
+              src="data:image/webp;base64,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"
+              alt="Logo 6reatGeneration"
+              width="96"
+              height="96"
+            />
+          </div>
+          <div>
+            <p class="by">Dibuat oleh</p>
+            <p class="names">Haikal Hafidz Kamil &amp; Azka Pratama Mulyana</p>
+            <p class="team">▪︎ 6reatGeneration</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script>
-      // ====== ISI & PENGATURAN (mudah diedit) ======
-      // "file" = nama file gambar maskot di folder yang sama, mis. avoider.png
-      const TYPES = {
+      var CATS = ["Menghindari", "Mengendalikan", "Mencari pengakuan"];
+      var T = [
+        [
+          "Si Kabur",
+          "Avoider",
+          0,
+          "Menjauhi konflik dan hal tidak nyaman demi menjaga suasana tetap tenang.",
+          "“Nanti saja, jangan sekarang.”",
+          "Menunda tugas sulit sambil menyibukkan diri dengan hal ringan.",
+        ],
+        [
+          "Si Serba Logika",
+          "Hyper Rational",
+          0,
+          "Mengutamakan analisis dan menganggap perasaan sebagai gangguan.",
+          "“Yang penting logika, bukan perasaan.”",
+          "Menanggapi curhat teman dengan solusi dingin, bukan didengarkan.",
+        ],
+        [
+          "Si Gelisah",
+          "Restless",
+          0,
+          "Terus mencari aktivitas baru dan sulit menetap pada satu hal.",
+          "“Pasti ada yang lebih seru.”",
+          "Berpindah-pindah proyek sebelum ada yang selesai.",
+        ],
+        [
+          "Si Pemegang Kendali",
+          "Controller",
+          1,
+          "Ingin memegang kendali dan cemas ketika keadaan tidak sesuai rencana.",
+          "“Lebih cepat kalau aku yang pegang.”",
+          "Mengambil alih tugas kelompok karena tidak yakin pada cara orang lain.",
+        ],
+        [
+          "Si Perfeksionis",
+          "Stickler",
+          1,
+          "Menuntut kerapian dan standar tinggi pada diri dan orang lain.",
+          "“Belum sempurna, jangan dikirim dulu.”",
+          "Merevisi laporan berkali-kali sampai lewat tenggat.",
+        ],
+        [
+          "Si Waspada",
+          "Hyper-Vigilant",
+          1,
+          "Selalu mengantisipasi bahaya, sehingga sulit rileks dan percaya.",
+          "“Bagaimana kalau ada yang salah?”",
+          "Mengecek ulang hal yang sudah beres sampai larut malam.",
+        ],
+        [
+          "Si Pengejar Nilai",
+          "Hyper Achiever",
+          2,
+          "Harga diri bergantung pada pencapaian dan pengakuan.",
+          "“Aku berharga kalau aku berhasil.”",
+          "Merasa kosong setelah menang karena langsung mengejar target berikutnya.",
+        ],
+        [
+          "Si Penyenang",
+          "Pleaser",
+          2,
+          "Mencari penerimaan dengan membantu dan menuruti orang lain.",
+          "“Tidak enak kalau menolak.”",
+          "Mengiyakan permintaan padahal jadwal sendiri sudah penuh.",
+        ],
+        [
+          "Si Perasa",
+          "Victim",
+          2,
+          "Merasa paling menderita atau tidak dimengerti, sehingga merasa tak berdaya.",
+          "“Kenapa selalu aku yang begini?”",
+          "Fokus pada ketidakadilan hingga lupa apa yang masih bisa diubah.",
+        ],
+      ];
+      var KEYS = ["Av", "HR", "Re", "Co", "St", "HV", "HA", "Pl", "Vi"];
+      function mascotSVG(k) {
+        var S = "#1b1f3a",
+          W = "#fff",
+          C = {
+            Av: "#4aa3a2",
+            Co: "#d9663a",
+            HA: "#e0a800",
+            HR: "#3b7dd8",
+            HV: "#8a5fc7",
+            Pl: "#e0628f",
+            St: "#2f9e6f",
+            Re: "#e6803a",
+            Vi: "#5a6fd0",
+          }[k];
+        function st(w) {
+          return (
+            ' stroke="' +
+            S +
+            '" stroke-width="' +
+            (w || 3) +
+            '" stroke-linecap="round" stroke-linejoin="round"'
+          );
+        }
+        function ln(d, w) {
+          return '<path d="' + d + '" fill="none"' + st(w) + "/>";
+        }
+        function eye(x, y, r, px, py) {
+          return (
+            '<circle cx="' +
+            x +
+            '" cy="' +
+            y +
+            '" r="' +
+            r +
+            '" fill="' +
+            W +
+            '"' +
+            st(2.5) +
+            '/><circle cx="' +
+            (x + (px || 0)) +
+            '" cy="' +
+            (y + (py || 0)) +
+            '" r="' +
+            r / 2.3 +
+            '" fill="' +
+            S +
+            '"/>'
+          );
+        }
+        function drop(x, y) {
+          return (
+            '<path d="M' +
+            x +
+            " " +
+            y +
+            'q7 10 0 15q-7-5 0-15z" fill="#bfe9ff"' +
+            st(2) +
+            "/>"
+          );
+        }
+        function sp(x, y) {
+          return (
+            '<path d="M' +
+            x +
+            " " +
+            (y - 6) +
+            'l1.8 4.2 4.2 1.8-4.2 1.8-1.8 4.2-1.8-4.2-4.2-1.8 4.2-1.8z" fill="#e07a00"/>'
+          );
+        }
+        var back = "",
+          face = "",
+          top = "";
+        var body =
+          '<ellipse cx="46" cy="104" rx="10" ry="5" fill="' +
+          C +
+          '"' +
+          st() +
+          '/><ellipse cx="74" cy="104" rx="10" ry="5" fill="' +
+          C +
+          '"' +
+          st() +
+          '/><ellipse cx="60" cy="72" rx="38" ry="34" fill="' +
+          C +
+          '"' +
+          st() +
+          "/>";
+        if (k === "Av") {
+          back = ln("M6 58h14M2 72h18M8 86h12");
+          face =
+            eye(48, 66, 8, -4, 0) +
+            eye(74, 66, 8, -4, 0) +
+            ln("M50 88q5-5 10 0t10 0") +
+            drop(98, 42);
+        } else if (k === "Co") {
+          face =
+            ln("M38 54l17 7M82 54l-17 7", 4) +
+            eye(48, 68, 6, 0, 1) +
+            eye(72, 68, 6, 0, 1) +
+            ln("M50 84h20");
+          top =
+            '<circle cx="60" cy="102" r="11" fill="none"' +
+            st(4) +
+            "/>" +
+            ln("M60 102v11M49 102h22");
+        } else if (k === "HA") {
+          face =
+            '<circle cx="48" cy="66" r="9" fill="#fff"' +
+            st(2.5) +
+            '/><circle cx="72" cy="66" r="9" fill="#fff"' +
+            st(2.5) +
+            "/>" +
+            sp(48, 66) +
+            sp(72, 66) +
+            ln("M46 84q14 14 28 0");
+          top =
+            '<path d="M50 8h20v12q0 12-10 12t-10-12z" fill="#ffd54a"' +
+            st(2.5) +
+            "/>" +
+            ln("M50 12h-8q0 10 8 12M70 12h8q0 10-8 12", 2.5) +
+            ln("M60 32v6M52 40h16");
+        } else if (k === "HR") {
+          face =
+            '<rect x="32" y="56" width="24" height="20" rx="4" fill="#fff"' +
+            st() +
+            '/><rect x="64" y="56" width="24" height="20" rx="4" fill="#fff"' +
+            st() +
+            "/>" +
+            ln("M56 64h8") +
+            '<circle cx="44" cy="66" r="3" fill="' +
+            S +
+            '"/><circle cx="76" cy="66" r="3" fill="' +
+            S +
+            '"/>' +
+            ln("M50 88h20");
+          top = ln("M88 20h16M88 30h16");
+        } else if (k === "HV") {
+          face =
+            eye(46, 64, 11, 0, 0) +
+            eye(74, 64, 11, 0, 0) +
+            ln("M34 46q12-8 22 0M64 46q12-8 22 0") +
+            '<ellipse cx="60" cy="90" rx="5" ry="6" fill="' +
+            S +
+            '"/>' +
+            drop(100, 50);
+          top =
+            ln("M60 38v-12") +
+            '<circle cx="60" cy="20" r="6" fill="#fff"' +
+            st(2.5) +
+            "/>" +
+            ln("M48 12q12-10 24 0", 2.5);
+        } else if (k === "Pl") {
+          face =
+            ln("M38 64q8-9 16 0M66 64q8-9 16 0") +
+            '<circle cx="38" cy="78" r="6" fill="#ff9ec0" opacity=".85"/><circle cx="82" cy="78" r="6" fill="#ff9ec0" opacity=".85"/><path d="M50 80q10 13 20 0z" fill="' +
+            S +
+            '"' +
+            st(2.5) +
+            "/>";
+          top =
+            '<path d="M60 36c-12-9-20-18-12-24 5-4 10-1 12 4 2-5 7-8 12-4 8 6 0 15-12 24z" fill="#ff4d88"' +
+            st(2.5) +
+            "/>";
+        } else if (k === "St") {
+          face =
+            eye(48, 66, 6, 0, 0) +
+            eye(72, 66, 6, 0, 0) +
+            ln("M39 54h17M64 54h17") +
+            ln("M50 86h20") +
+            ln("M42 40h36");
+          top =
+            '<g transform="rotate(12 96 76)"><rect x="90" y="50" width="12" height="52" rx="2" fill="#fff3bf"' +
+            st(2.5) +
+            "/>" +
+            ln("M90 58h6M90 66h6M90 74h6M90 82h6M90 90h6", 2) +
+            "</g>";
+        } else if (k === "Re") {
+          back =
+            '<ellipse cx="20" cy="56" rx="15" ry="22" fill="#ffd9b8"' +
+            st(2.5) +
+            ' transform="rotate(-20 20 56)"/><ellipse cx="100" cy="56" rx="15" ry="22" fill="#ffd9b8"' +
+            st(2.5) +
+            ' transform="rotate(20 100 56)"/>';
+          face =
+            eye(48, 66, 9, -3, -3) +
+            eye(74, 66, 9, 3, 3) +
+            '<path d="M48 84q12 14 24 0z" fill="' +
+            S +
+            '"' +
+            st(2.5) +
+            "/>";
+          top =
+            ln("M50 40q-6-14-14-16M70 40q6-14 14-16") +
+            '<circle cx="35" cy="24" r="3" fill="' +
+            S +
+            '"/><circle cx="85" cy="24" r="3" fill="' +
+            S +
+            '"/>';
+        } else {
+          face =
+            eye(48, 70, 8, 0, 2) +
+            eye(72, 70, 8, 0, 2) +
+            ln("M38 56l16-6M82 56l-16-6") +
+            '<path d="M44 80q-4 8 0 11q4-3 0-11z" fill="#9fd8ff"' +
+            st(2) +
+            "/>" +
+            ln("M48 94q12-10 24 0");
+          top =
+            '<path d="M38 32h38a9 9 0 0 0 0-18a12 12 0 0 0-22-4a11 11 0 0 0-18 8a7 7 0 0 0 2 14z" fill="#e4ecff"' +
+            st(2.5) +
+            '/><path d="M44 36v6M58 38v6M72 36v6" stroke="#6fb5ff" stroke-width="3" stroke-linecap="round"/>';
+        }
+        return (
+          '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          back +
+          body +
+          face +
+          top +
+          "</svg>"
+        );
+      }
+      var cur = -1,
+        fb = document.getElementById("filters"),
+        gr = document.getElementById("grid");
+      function renderGrid() {
+        gr.innerHTML = "";
+        T.forEach(function (t, ix) {
+          if (cur >= 0 && t[2] !== cur) return;
+          var d = document.createElement("article");
+          d.className = "t";
+          d.innerHTML =
+            '<span class="badge">' +
+            CATS[t[2]] +
+            '</span><header><div class="mh"><div class="mas">' +
+            mascotSVG(KEYS[ix]) +
+            "</div><div><h3>" +
+            t[0] +
+            "</h3><small>" +
+            t[1] +
+            "</small></div></div></header><p>" +
+            t[3] +
+            '</p><p class="ex"><b>Suara khas:</b> ' +
+            t[4] +
+            '</p><p class="ex" style="margin-top:.5rem"><b>Contoh:</b> ' +
+            t[5] +
+            "</p>";
+          gr.appendChild(d);
+          if (window.watch) watch(d);
+        });
+      }
+      function renderFilters() {
+        fb.innerHTML = "";
+        var opts = [["Semua (" + T.length + ")", -1]].concat(
+          CATS.map(function (c, i) {
+            return [c, i];
+          }),
+        );
+        opts.forEach(function (o) {
+          var b = document.createElement("button");
+          b.textContent = o[0];
+          b.setAttribute("aria-pressed", o[1] === cur);
+          b.onclick = function () {
+            cur = o[1];
+            renderFilters();
+            renderGrid();
+          };
+          fb.appendChild(b);
+        });
+      }
+      renderFilters();
+      renderGrid();
+
+      /* cek diri */
+      var C = [
+        "Aku sering menghindari obrolan atau tugas yang tidak nyaman.",
+        "Aku menimbang semuanya dengan logika dan sulit membahas perasaan.",
+        "Aku cepat bosan dan mudah berpindah ke hal baru.",
+        "Aku sulit melepas kendali dan mempercayakan tugas ke orang lain.",
+        "Aku sulit puas dan sering merevisi sampai terlambat.",
+        "Aku sering membayangkan hal terburuk yang bisa terjadi.",
+        "Aku merasa nilai diriku bergantung pada pencapaian.",
+        "Aku sulit menolak permintaan orang lain.",
+        "Aku sering merasa jadi pihak yang paling dirugikan.",
+      ];
+      var cb = document.getElementById("cekbox");
+      cb.innerHTML =
+        C.map(function (c) {
+          return '<label><input type="checkbox"> ' + c + "</label>";
+        }).join("") +
+        '<div class="score" aria-live="polite"><b id="sc">0 / 9</b><span id="st">Belum ada yang dicentang.</span></div><div id="ctype"></div><p style="margin:1rem 0 0"><a class="btn y" href="#kuis">Lanjut ke kuis <span aria-hidden="true">↓</span></a></p>';
+      cb.addEventListener("change", function () {
+        var n = cb.querySelectorAll("input:checked").length;
+        var se = document.getElementById("sc");
+        se.textContent = n + " / 9";
+        se.classList.remove("bump");
+        void se.offsetWidth;
+        se.classList.add("bump");
+        var ct = document.getElementById("ctype"),
+          nm = [];
+        cb.querySelectorAll("input").forEach(function (x, ix) {
+          if (x.checked) nm.push('<span class="cchip">' + T[ix][0] + "</span>");
+        });
+        ct.innerHTML = nm.length
+          ? '<p style="margin:.8rem 0 .4rem;color:var(--muted);font-size:.9rem">Kemungkinan tipemu:</p>' +
+            nm.join("")
+          : "";
+        document.getElementById("st").textContent =
+          n === 0
+            ? "Belum ada yang dicentang."
+            : n <= 3
+              ? "Beberapa pola muncul sesekali. Cukup diperhatikan."
+              : n <= 6
+                ? "Polanya cukup terasa. Pilih satu untuk dilatih lebih dulu."
+                : "Banyak pola aktif. Bercerita ke orang tepercaya atau konselor bisa sangat membantu.";
+      });
+
+      /* kuis */
+      var ZT = {
         Av: {
-          file: "avoider",
           name: "Si Kabur (Avoider)",
           emoji: "🫥",
           c: "#4aa3a2",
@@ -301,7 +2016,6 @@
           tips: "Pecah tugas jadi langkah 5 menit, lalu mulai dari langkah paling kecil.",
         },
         Co: {
-          file: "controller",
           name: "Si Pemegang Kendali (Controller)",
           emoji: "🧭",
           c: "#d9663a",
@@ -311,7 +2025,6 @@
           tips: "Coba serahkan satu bagian kecil ke temanmu dan jangan ikut campur dulu.",
         },
         HA: {
-          file: "hyper-achiever",
           name: "Si Pengejar Nilai (Hyper Achiever)",
           emoji: "🏆",
           c: "#e0a800",
@@ -321,7 +2034,6 @@
           tips: "Tulis satu hal baik tentang dirimu yang tidak ada hubungannya dengan nilai.",
         },
         HR: {
-          file: "hyper-rational",
           name: "Si Serba Logika (Hyper Rational)",
           emoji: "🧮",
           c: "#3b7dd8",
@@ -331,7 +2043,6 @@
           tips: "Sebelum memberi solusi, tanyakan dulu: “Kamu butuh didengarkan atau butuh saran?”",
         },
         HV: {
-          file: "hyper-vigilant",
           name: "Si Waspada (Hyper-Vigilant)",
           emoji: "🔭",
           c: "#8a5fc7",
@@ -341,7 +2052,6 @@
           tips: "Tulis kekhawatiranmu, lalu tandai mana yang benar-benar bisa kamu kendalikan. Jika rasa cemas sering mengganggu, ceritakan ke guru BK.",
         },
         Pl: {
-          file: "pleaser",
           name: "Si Penyenang (Pleaser)",
           emoji: "💝",
           c: "#e0628f",
@@ -351,7 +2061,6 @@
           tips: "Latih kalimat singkat: “Maaf, aku belum bisa kali ini.”",
         },
         St: {
-          file: "stickler",
           name: "Si Perfeksionis (Stickler)",
           emoji: "📐",
           c: "#2f9e6f",
@@ -362,9 +2071,8 @@
           tips: "Pasang batas waktu dan tentukan standar “cukup baik” sebelum mulai.",
         },
         Re: {
-          file: "restless",
           name: "Si Gelisah (Restless)",
-          emoji: "😥",
+          emoji: "🦋",
           c: "#e6803a",
           ciri: "Kamu cepat bosan dan selalu mencari hal baru, sehingga banyak yang dimulai tapi belum selesai.",
           kuat: "Kreatif, energik, dan punya banyak ide.",
@@ -372,7 +2080,6 @@
           tips: "Selesaikan satu hal kecil dulu sebelum pindah ke hal baru.",
         },
         Vi: {
-          file: "victim",
           name: "Si Perasa (Victim)",
           emoji: "🌧️",
           c: "#5a6fd0",
@@ -382,7 +2089,7 @@
           tips: "Coba ucapkan kebutuhanmu: “Aku butuh ditemani”. Jika perasaan berat terus datang, bicaralah dengan guru BK atau orang dewasa yang kamu percaya.",
         },
       };
-      const QS = [
+      var ZQA = [
         [
           "Hari ini jadwal khidmat asrama, tapi dua teman khidmatmu belum bergerak padahal pembinamu akan memeriksa asrama sebentar lagi. Kamu...",
           [
@@ -528,151 +2235,782 @@
           ],
         ],
       ];
-      // ====== LOGIKA ======
-      const $ = (id) => document.getElementById(id);
-      let i = 0,
-        score = {},
-        ans = [],
-        orders = [],
-        fromReview = false;
-      function shuffle(a) {
+      var ZQU = [
+        [
+          "Kamu sedang kerja kelompok, tapi dua anggota belum mengerjakan bagiannya padahal presentasi tinggal sebentar lagi. Kamu...",
+          [
+            ["Mengerjakan semuanya sendiri biar pasti beres", "Co"],
+            [
+              "Ikut mengerjakan bagian mereka tanpa bicara, takut dianggap galak",
+              "Pl",
+            ],
+            ["Kesal, lalu mendiamkan semua orang", "Vi"],
+            ["Pura-pura sibuk dengan hal lain supaya tidak kebagian", "Av"],
+          ],
+        ],
+        [
+          "Besok adalah tenggat tugas penting. Malam ini kamu...",
+          [
+            ["Takut salah dan terus membayangkan semua yang bisa gagal", "HV"],
+            [
+              "Mengulang-ulang sampai hasilnya paling bagus dibanding yang lain",
+              "HA",
+            ],
+            ["Mengulang dari awal karena merasa belum sempurna", "St"],
+            [
+              "Baru beberapa menit mengerjakan sudah bosan, lalu ganti kegiatan lain",
+              "Re",
+            ],
+          ],
+        ],
+        [
+          "Temanmu curhat kalau dia sedih dan merasa kesepian. Kamu...",
+          [
+            ["Memberi solusi langkah demi langkah, bukan menenangkan", "HR"],
+            ["Bilang “iya, iya” padahal capek, takut mengecewakan", "Pl"],
+            ["Mengalihkan topik karena tidak nyaman", "Av"],
+            [
+              "Jadi teringat masalahmu sendiri dan merasa tidak ada yang peduli",
+              "Vi",
+            ],
+          ],
+        ],
+        [
+          "Kamu menerima kabar bahwa kamu tidak lolos seleksi yang sangat kamu inginkan (beasiswa, kerja, atau organisasi). Kamu...",
+          [
+            [
+              "Merasa tidak cukup baik dan bertekad lolos di seleksi berikutnya sebagai yang paling unggul",
+              "HA",
+            ],
+            [
+              "Langsung mencari tahu kriteria seleksinya dan letak kurangmu, tanpa memikirkan perasaanmu sendiri",
+              "HR",
+            ],
+            [
+              "Was-was kamu memang dinilai kurang baik oleh para penyeleksi",
+              "HV",
+            ],
+            [
+              "Ingin memperbaiki semua kekuranganmu sampai tidak ada celah sama sekali",
+              "St",
+            ],
+          ],
+        ],
+        [
+          "Teman-temanmu mengajak pergi bareng di akhir pekan. Kamu...",
+          [
+            ["Ikut saja walau sebenarnya ingin di rumah", "Pl"],
+            [
+              "Menyusun jadwal dan rute sendiri, tidak tenang kalau orang lain yang atur",
+              "Co",
+            ],
+            [
+              "Antusias di awal, tapi belum sampai separuh jalan sudah ingin ganti rencana",
+              "Re",
+            ],
+            ["Jawab “lihat nanti ya” lalu menghilang dari obrolan", "Av"],
+          ],
+        ],
+        [
+          "Kamu ditunjuk menjadi ketua acara di kelas atau kantormu. Kamu...",
+          [
+            [
+              "Sibuk menyempurnakan satu bagian kecil, bagian lain belum tersentuh",
+              "St",
+            ],
+            [
+              "Mencari cara agar kerjamu terlihat paling menonjol di antara panitia lain",
+              "HA",
+            ],
+            ["Memikirkan semua hal yang bisa salah di hari acara", "HV"],
+            [
+              "Banyak ide baru yang muncul, tapi bingung mau mengerjakan yang mana dulu",
+              "Re",
+            ],
+          ],
+        ],
+        [
+          "Barang milikmu dipakai temanmu tanpa izin dan dikembalikan dalam keadaan habis. Kamu...",
+          [
+            [
+              "Merasa tidak ada yang peduli padamu, lalu marah dalam hati atau menjauh",
+              "Vi",
+            ],
+            [
+              "Mengambil alih dan menyimpan semua barangmu dengan aturan versimu sendiri",
+              "Co",
+            ],
+            [
+              "Mencatat berapa kali dia memakainya dan mencari cara paling efisien, tanpa memikirkan perasaanmu sendiri",
+              "HR",
+            ],
+            ["Pura-pura tidak masalah dan berharap temanmu berubah", "Av"],
+          ],
+        ],
+        [
+          "Temanmu mengajak ngobrol sampai larut malam padahal kamu ingin istirahat. Kamu...",
+          [
+            ["Ikut saja walau sebenarnya mengantuk dan tidak mau", "Pl"],
+            [
+              "Menunjukkan kesal atau sedih supaya temanmu mengerti tanpa harus bilang",
+              "Vi",
+            ],
+            [
+              "Menyuruh temanmu berhenti ngobrol dan tidur sesuai aturan versimu",
+              "Co",
+            ],
+            ["Curiga ada maksud tersembunyi di balik ajakannya", "HV"],
+          ],
+        ],
+        [
+          "Akhir pekan ini kamu bebas mengatur waktu. Kamu...",
+          [
+            [
+              "Menyusun waktu penuh, mulai dari kursus, belajar, sampai persiapan ujian",
+              "HA",
+            ],
+            ["Susah diam, memulai banyak hal tapi tidak selesai", "Re"],
+            [
+              "Merapikan lemari dan barang-barangmu berulang kali sampai terasa sempurna",
+              "St",
+            ],
+            [
+              "Memikirkan cara paling efisien memakai waktu luang, bukan apa yang kamu rasakan",
+              "HR",
+            ],
+          ],
+        ],
+      ];
+      var ZQ = ZQA;
+      var ZS = {
+        Av: {
+          pemicu:
+            "Tugas yang terasa besar, samar, atau tidak menyenangkan, dan percakapan yang berpotensi canggung.",
+          langkah: [
+            "Tulis tugasnya, lalu pecah jadi langkah yang selesai dalam 5 menit.",
+            "Pasang pengatur waktu 10 menit dan kerjakan langkah pertama, tanpa kewajiban lanjut.",
+            "Katakan rencanamu ke satu teman: “Jam 4 aku mulai ya.” Ada saksi membuat kita lebih konsisten.",
+          ],
+          kalimat:
+            "Tidak nyaman bukan berarti berbahaya. Aku bisa mulai dari yang kecil.",
+          kambuh:
+            "Kalau sudah terlanjur menunda, jangan menghukum diri. Kerjakan langkah paling kecil sekarang juga.",
+        },
+        Co: {
+          pemicu:
+            "Kerja kelompok, jadwal yang berubah, atau saat orang lain mengerjakan sesuatu dengan cara berbeda.",
+          langkah: [
+            "Pilih satu tugas kecil, serahkan, dan tahan diri untuk tidak mengoreksi di tengah jalan.",
+            "Sebelum mengambil alih, tanya dulu: “Apa yang benar-benar terjadi kalau cara mereka berbeda?”",
+            "Minta pendapat teman sebelum memutuskan. Kepemimpinan yang kuat memberi ruang.",
+          ],
+          kalimat: "Hasilnya boleh berbeda dari bayanganku dan tetap bagus.",
+          kambuh:
+            "Tarik napas, tanyakan apa yang sebenarnya kamu takutkan, lalu mundur satu langkah.",
+        },
+        HA: {
+          pemicu:
+            "Pengumuman nilai, lomba, perbandingan dengan teman, atau saat tidak ada target.",
+          langkah: [
+            "Tulis tiga hal baik tentang dirimu yang tidak berkaitan dengan nilai atau prestasi.",
+            "Rayakan satu pencapaian kecil sebelum mengejar target berikutnya.",
+            "Jadwalkan waktu istirahat tanpa target, dan anggap itu bagian dari rencana.",
+          ],
+          kalimat:
+            "Aku tetap berharga, juga di hari ketika aku tidak berprestasi.",
+          kambuh:
+            "Saat merasa kurang, tanya dirimu: “Aku mengejar ini karena mau, atau karena takut dianggap kurang?”",
+        },
+        HR: {
+          pemicu:
+            "Saat teman curhat, situasi penuh emosi, atau keputusan yang menyangkut perasaan.",
+          langkah: [
+            "Sebelum menganalisis, sebutkan dulu satu perasaanmu: senang, kesal, takut, atau sedih.",
+            "Saat teman bercerita, tanya: “Kamu butuh didengarkan atau butuh saran?”",
+            "Tulis tiga kalimat tiap malam tentang apa yang kamu rasakan hari itu.",
+          ],
+          kalimat: "Perasaan juga data. Aku boleh mendengarkannya.",
+          kambuh:
+            "Tahan solusimu dulu. Cukup dengarkan dan katakan, “Kedengarannya berat ya.”",
+        },
+        HV: {
+          pemicu:
+            "Hal yang belum pasti, acara besar, atau saat ada yang berbeda dari biasanya.",
+          langkah: [
+            "Tulis semua kekhawatiranmu, lalu tandai mana yang bisa kamu kendalikan dan mana yang tidak.",
+            "Untuk yang bisa dikendalikan, buat satu rencana kecil. Untuk yang tidak, latih melepaskan dengan tarik napas pelan sambil menghitung sampai 4.",
+            "Tanyakan juga: “Apa kemungkinan terbaik yang bisa terjadi?” agar pikiranmu seimbang.",
+          ],
+          kalimat:
+            "Aku sudah bersiap seperlunya. Sisanya memang tidak bisa kupastikan, dan itu wajar.",
+          kambuh:
+            "Alihkan perhatian ke indramu: sebutkan lima benda yang kamu lihat sekarang. Kalau cemas sering mengganggu, ceritakan ke guru BK.",
+        },
+        Pl: {
+          pemicu:
+            "Permintaan bantuan, ajakan teman, atau saat takut orang kecewa.",
+          langkah: [
+            "Beri jeda sebelum menjawab: “Aku cek dulu ya.”",
+            "Latih satu kalimat penolakan yang sopan: “Maaf, aku belum bisa kali ini.”",
+            "Tulis satu hal yang kamu inginkan hari ini, lalu lakukan.",
+          ],
+          kalimat: "Menolak sebuah permintaan bukan berarti menolak orangnya.",
+          kambuh:
+            "Kalau sudah terlanjur mengiyakan, tidak apa-apa menyampaikan keterbatasanmu setelahnya.",
+        },
+        St: {
+          pemicu:
+            "Tugas dengan standar tinggi, tenggat, atau saat melihat kekurangan kecil.",
+          langkah: [
+            "Sebelum mulai, tulis seperti apa hasil yang “cukup baik”.",
+            "Pasang batas waktu dan berhenti saat waktunya habis, walau masih ada yang ingin diperbaiki.",
+            "Kumpulkan satu hasil yang 90% sempurna, lalu lihat bahwa semuanya baik-baik saja.",
+          ],
+          kalimat:
+            "Selesai dan cukup baik lebih berguna daripada sempurna tapi tidak pernah jadi.",
+          kambuh:
+            "Tanya dirimu: “Apakah detail ini akan terlihat oleh orang lain?” Kalau tidak, lanjut.",
+        },
+        Re: {
+          pemicu:
+            "Tugas yang berulang, membosankan, atau saat ada ide baru yang terasa lebih seru.",
+          langkah: [
+            "Tulis ide barunya di catatan ide, lalu kembali ke tugas yang sedang dikerjakan.",
+            "Selesaikan satu hal kecil dulu hari ini, centang, baru boleh berpindah.",
+            "Bagi waktu: 25 menit fokus, lalu 5 menit bebas bergerak.",
+          ],
+          kalimat: "Idenya tidak hilang. Aku bisa menyelesaikan yang ini dulu.",
+          kambuh:
+            "Kalau sudah berpindah-pindah, pilih satu yang paling penting dan mulai selama 10 menit.",
+        },
+        Vi: {
+          pemicu:
+            "Saat merasa diabaikan, tidak dipahami, atau diperlakukan tidak adil.",
+          langkah: [
+            "Beri nama perasaanmu, lalu sampaikan kebutuhannya dengan kalimat langsung: “Aku butuh ditemani.”",
+            "Tanyakan: “Bagian mana dari situasi ini yang masih bisa kuubah?” lalu kerjakan satu langkahnya.",
+            "Hubungi satu orang yang kamu percaya sebelum perasaan menumpuk.",
+          ],
+          kalimat:
+            "Perasaanku nyata, dan aku tetap punya pilihan untuk menanggapinya.",
+          kambuh:
+            "Kalau perasaan berat terus datang, ceritakan ke guru BK atau orang dewasa yang kamu percaya.",
+        },
+      };
+      function zplan(k) {
+        var p = ZS[k];
+        return (
+          '<div class="zplan"><h4>Rencana perbaikanmu</h4><p><b>Biasanya muncul saat:</b> ' +
+          p.pemicu +
+          "</p><ol>" +
+          p.langkah
+            .map(function (s) {
+              return "<li>" + s + "</li>";
+            })
+            .join("") +
+          '</ol><p class="zsay"><b>Kalimat penyeimbang:</b> ' +
+          p.kalimat +
+          "</p><p><b>Kalau kambuh:</b> " +
+          p.kambuh +
+          '</p><p class="zhint">Pilih satu langkah saja untuk minggu ini. Perubahan kecil yang diulang lebih awet daripada target besar.</p></div>'
+        );
+      }
+      var zi = 0,
+        zans = [],
+        zord = [],
+        zfrom = false,
+        zb = document.getElementById("zbox");
+      function zshuf(a) {
         a = a.slice();
-        for (let k = a.length - 1; k > 0; k--) {
-          const j = Math.floor(Math.random() * (k + 1));
-          [a[k], a[j]] = [a[j], a[k]];
+        for (var k = a.length - 1; k > 0; k--) {
+          var j = Math.floor(Math.random() * (k + 1)),
+            t = a[k];
+          a[k] = a[j];
+          a[j] = t;
         }
         return a;
       }
-      function startQuiz() {
-        i = 0;
-        ans = [];
-        orders = [];
-        fromReview = false;
-        $("start").classList.add("hidden");
-        $("result").classList.add("hidden");
-        $("review").classList.add("hidden");
-        $("quiz").classList.remove("hidden");
-        show();
-      }
-      function show() {
-        const [q, o] = QS[i];
-        $("count").textContent = "Soal " + (i + 1) + " dari " + QS.length;
-        $("prog").style.width = (i / QS.length) * 100 + "%";
-        $("q").textContent = q;
-        $("opts").innerHTML = "";
-        if (!orders[i]) orders[i] = shuffle(o);
-        orders[i].forEach(([t, k]) => {
-          const b = document.createElement("button");
-          b.className = "opt" + (ans[i] && ans[i].t === t ? " sel" : "");
-          b.textContent = t;
-          b.onclick = () => pick(t, k);
-          $("opts").appendChild(b);
-        });
-        $("back").classList.toggle("hidden", i === 0 || fromReview);
-      }
-      function pick(t, k) {
-        ans[i] = { t, k };
-        if (fromReview) {
-          fromReview = false;
-          review();
-          return;
-        }
-        i++;
-        i < QS.length ? show() : review();
-      }
-      function goBack() {
-        if (i > 0) {
-          i--;
-          show();
+      function zgo() {
+        var r = zb.getBoundingClientRect();
+        if (r.top < 130 || r.top > innerHeight * 0.6) {
+          scrollTo({
+            top: Math.max(0, r.top + scrollY - 130),
+            behavior: "instant",
+          });
         }
       }
-      function edit(n) {
-        i = n;
-        fromReview = true;
-        $("review").classList.add("hidden");
-        $("quiz").classList.remove("hidden");
-        show();
-        window.scrollTo(0, 0);
-      }
-      function review() {
-        $("quiz").classList.add("hidden");
-        const el = $("review");
-        el.classList.remove("hidden");
-        el.innerHTML =
-          '<h2>Sudah yakin dengan jawabanmu?</h2><p class="muted">Periksa dulu. Kamu bisa mengubah jawaban mana pun sebelum melihat hasil.</p>' +
-          QS.map(
-            (q, n) =>
-              '<div class="rv"><div><small>Soal ' +
-              (n + 1) +
-              "</small>" +
-              ans[n].t +
-              '</div><button class="link" onclick="edit(' +
-              n +
-              ')">Ubah</button></div>',
-          ).join("") +
-          '<p class="center" style="margin-top:20px"><button class="btn" onclick="finish()">Ya, lihat hasilku</button></p>';
-        window.scrollTo(0, 0);
-      }
-      function mascot(k, small) {
-        const t = TYPES[k];
+      function zmas(k) {
+        var t = ZT[k];
         return (
-          '<div class="mascot" style="background:' +
+          '<div class="zmascot" style="background:' +
           t.c +
-          '22"><img src="' +
-          t.file +
-          '.png" alt="' +
+          '22" role="img" aria-label="' +
           t.name +
-          '" onerror="this.replaceWith(document.createTextNode(\'' +
-          t.emoji +
-          "'))\"></div>"
+          '">' +
+          mascotSVG(k) +
+          "</div>"
         );
       }
-      function finish() {
-        score = {};
-        Object.keys(TYPES).forEach((k) => (score[k] = 0));
-        ans.forEach((a) => score[a.k]++);
-        $("review").classList.add("hidden");
-        const r = Object.keys(score).sort((a, b) => score[b] - score[a]);
-        const a = r[0],
+      function zintro() {
+        zb.innerHTML =
+          '<div class="zc"><div class="zmascot" style="background:#e9e5ff" aria-hidden="true">🧩</div><h3 class="zh">Kenali Kebiasaanmu</h3><p style="margin:0 auto 1rem">Jawab 9 situasi sehari-hari dengan pilihan yang paling mirip dirimu. Ini hanya alat untuk mengenal diri. Pilih konteks soal yang paling dekat dengan hidupmu.</p><button class="btn y" data-act="start" data-set="u">Konteks umum</button> <button class="btn o2" data-act="start" data-set="a">Konteks asrama</button>' +
+          zlast() +
+          "</div>";
+      }
+      function zbegin() {
+        zi = 0;
+        zans = [];
+        zord = [];
+        zfrom = false;
+        zshow();
+      }
+      function zshow() {
+        var q = ZQ[zi];
+        if (!zord[zi]) zord[zi] = zshuf(q[1]).concat([[ZNONE, "X"]]);
+        zb.innerHTML =
+          '<p style="color:var(--muted);font-size:.9rem;margin:0 0 .3rem">Soal ' +
+          (zi + 1) +
+          " dari " +
+          ZQ.length +
+          '</p><div class="bar"><div style="width:' +
+          (zi / ZQ.length) * 100 +
+          '%"></div></div><h3 class="zh">' +
+          q[0] +
+          "</h3>" +
+          zord[zi]
+            .map(function (o, n) {
+              return (
+                '<button class="zopt' +
+                (o[1] === "X" ? " none" : "") +
+                (zans[zi] && zans[zi].t === o[0] ? " sel" : "") +
+                '" data-act="pick" data-o="' +
+                n +
+                '" style="animation-delay:' +
+                n * 70 +
+                'ms">' +
+                o[0] +
+                "</button>"
+              );
+            })
+            .join("") +
+          (zi > 0 && !zfrom
+            ? '<button class="zback" data-act="back">← Kembali ke soal sebelumnya</button>'
+            : "");
+      }
+      function zpick(n) {
+        var p = zord[zi][n];
+        zans[zi] = { t: p[0], k: p[1] };
+        if (zfrom) {
+          zfrom = false;
+          zreview();
+          return;
+        }
+        zi++;
+        if (zi < ZQ.length) zshow();
+        else zreview();
+      }
+      function zreview() {
+        zb.innerHTML =
+          '<h3 class="zh">Sudah yakin dengan jawabanmu?</h3><p style="color:var(--muted);font-size:.95rem">Periksa dulu. Kamu bisa mengubah jawaban mana pun sebelum melihat hasil.</p>' +
+          ZQ.map(function (q, n) {
+            return (
+              '<div class="zrv"><div><small>Soal ' +
+              (n + 1) +
+              "</small>" +
+              zans[n].t +
+              '</div><button class="zlink" data-act="edit" data-n="' +
+              n +
+              '">Ubah</button></div>'
+            );
+          }).join("") +
+          '<p class="zc" style="margin:1.2rem 0 0"><button class="btn y" data-act="finish">Ya, lihat hasilku</button></p>';
+        zgo();
+      }
+      function zfinish() {
+        var s = {};
+        Object.keys(ZT).forEach(function (k) {
+          s[k] = 0;
+        });
+        var nn = 0;
+        zans.forEach(function (a) {
+          if (a.k === "X") nn++;
+          else s[a.k]++;
+        });
+        zsave(s, nn);
+        var r = Object.keys(s).sort(function (a, b) {
+            return s[b] - s[a];
+          }),
+          a = r[0],
           b = r[1],
-          t = TYPES[a],
-          tie = score[a] === score[b];
-        $("quiz").classList.add("hidden");
-        const el = $("result");
-        el.classList.remove("hidden");
-        el.style.setProperty("--c", t.c);
-        el.innerHTML =
-          '<div class="center">' +
-          mascot(a) +
-          '<span class="tag" style="background:' +
+          t = ZT[a],
+          tie = s[a] === s[b];
+        if (nn >= 4) {
+          znone(s, nn, a, b);
+          return;
+        }
+        var lv =
+          s[a] >= 4
+            ? "Polanya cukup kuat di jawabanmu."
+            : s[a] === 3
+              ? "Polanya cukup terasa di jawabanmu."
+              : "Skormu tersebar, jadi ini kecenderungan yang ringan.";
+        zb.style.setProperty("--c", t.c);
+        window.__zsum =
+          "Kecenderungan utamaku: " + t.name + ". Kedua: " + ZT[b].name + ".";
+        zb.innerHTML =
+          '<div class="zc">' +
+          zmas(a) +
+          '<span class="rtag" style="background:' +
           t.c +
           '">' +
           (tie ? "Salah satu kecenderungan utamamu" : "Kecenderungan utamamu") +
-          "</span><h1>" +
+          '</span><h3 class="zh" style="font-size:1.5rem">' +
           t.name +
-          "</h1></div>" +
-          '<div class="row"><b>Ciri</b>' +
+          '</h3></div><p class="zhint zc" style="margin:.2rem 0 1rem">' +
+          lv +
+          " Ini kecenderungan yang bisa berubah, bukan identitasmu.</p>" +
+          '<div class="zrow"><b>Ciri</b>' +
           t.ciri +
-          "</div>" +
-          '<div class="row"><b>Kekuatanmu</b>' +
+          '</div><div class="zrow"><b>Kekuatanmu</b>' +
           t.kuat +
-          "</div>" +
-          '<div class="row"><b>Tantangan</b>' +
+          '</div><div class="zrow"><b>Tantangan</b>' +
           t.tantangan +
-          "</div>" +
-          '<div class="row"><b>Tips kecil</b>' +
+          '</div><div class="zrow"><b>Tips kecil</b>' +
           t.tips +
           "</div>" +
-          '<div class="second">' +
-          mascot(b) +
-          '<div><span class="muted">' +
+          zbars(s, nn) +
+          zplan(a) +
+          '<div class="zsecond">' +
+          zmas(b) +
+          '<div><span style="color:var(--muted);font-size:.9rem">' +
           (tie ? "Kecenderungan utama lainnya" : "Kecenderungan kedua") +
           "</span><br><b>" +
-          TYPES[b].name +
-          "</b></div></div>" +
-          '<p class="center" style="margin-top:20px"><button class="btn" onclick="startQuiz()">Ulangi kuis</button></p>';
-        window.scrollTo(0, 0);
+          ZT[b].name +
+          '</b><br><span style="font-size:.9rem">Mulai dari: ' +
+          ZT[b].tips +
+          "</span></div></div>" +
+          '<p class="zc" style="margin:1.2rem 0 0"><button class="btn y" data-act="copy">Salin hasil</button> <button class="btn o2" data-act="intro">Ulangi kuis</button></p>';
+        zgo();
+        zconf(t.c);
       }
+      zb.addEventListener("click", function (e) {
+        var t = e.target.closest("[data-act]");
+        if (!t) return;
+        var a = t.dataset.act;
+        if (a === "start") {
+          ZQ = t.dataset.set === "a" ? ZQA : ZQU;
+          zbegin();
+          zgo();
+        } else if (a === "intro") {
+          zintro();
+          zgo();
+        } else if (a === "last") {
+          zrestore();
+        } else if (a === "wipe") {
+          try {
+            localStorage.removeItem("zlast");
+          } catch (e) {}
+          zintro();
+          zgo();
+        } else if (a === "copy") {
+          zshare(t, a);
+        } else if (a === "pick") zpick(+t.dataset.o);
+        else if (a === "back") {
+          if (zi > 0) {
+            zi--;
+            zshow();
+          }
+        } else if (a === "edit") {
+          zi = +t.dataset.n;
+          zfrom = true;
+          zshow();
+          zgo();
+        } else if (a === "finish") zfinish();
+      });
+      zintro();
+      var RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+      function zconf(c) {
+        if (
+          RM ||
+          document.documentElement.getAttribute("data-motion") === "off"
+        )
+          return;
+        var box = document.createElement("div");
+        box.className = "conf";
+        box.setAttribute("aria-hidden", "true");
+        var cols = ["#ffd166", "#4d86ff", "#ff6b9a", "#ffffff", c];
+        for (var i = 0; i < 36; i++) {
+          var p = document.createElement("i");
+          p.style.left = Math.random() * 100 + "%";
+          p.style.background = cols[i % cols.length];
+          p.style.setProperty("--x", (Math.random() - 0.5) * 160 + "px");
+          p.style.setProperty("--r", (Math.random() - 0.5) * 900 + "deg");
+          p.style.animationDelay = Math.random() * 0.4 + "s";
+          p.style.animationDuration = 1.4 + Math.random() + "s";
+          box.appendChild(p);
+        }
+        document.body.appendChild(box);
+        setTimeout(function () {
+          box.remove();
+        }, 2800);
+      }
+      function watch(el, i) {
+        if (RM || !window.__io) return;
+        if (el.getBoundingClientRect().top < innerHeight * 0.95) return;
+        el.classList.add("reveal");
+        el.style.transitionDelay = ((i || 0) % 3) * 80 + "ms";
+        window.__io.observe(el);
+      }
+      if (!RM && "IntersectionObserver" in window) {
+        window.__io = new IntersectionObserver(
+          function (es) {
+            es.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                window.__io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+        document
+          .querySelectorAll(".card,.dark,.sb,.callout,.t,.panel")
+          .forEach(watch);
+      }
+      (function () {
+        var r = document.documentElement,
+          b = document.getElementById("tgl");
+        function cur() {
+          return (
+            r.getAttribute("data-theme") ||
+            (matchMedia("(prefers-color-scheme:dark)").matches
+              ? "dark"
+              : "light")
+          );
+        }
+        try {
+          var s = localStorage.getItem("theme");
+          if (s) r.setAttribute("data-theme", s);
+        } catch (e) {}
+        b.addEventListener("click", function () {
+          var n = cur() === "dark" ? "light" : "dark";
+          r.setAttribute("data-theme", n);
+          try {
+            localStorage.setItem("theme", n);
+          } catch (e) {}
+        });
+      })();
+      var ZNONE = "Tidak ada yang cocok dengan saya";
+      function zsave(s, n) {
+        var o = {};
+        Object.keys(s).forEach(function (k) {
+          o[k] = s[k];
+        });
+        o.X = n || 0;
+        try {
+          localStorage.setItem("zlast", JSON.stringify(o));
+        } catch (e) {}
+      }
+      function znone(s, nn, a, b) {
+        var msg =
+          nn >= 4
+            ? "Kamu memilih “tidak ada yang cocok” sebanyak " +
+              nn +
+              " kali dari 9 soal. Itu wajar: situasi di soal mungkin kurang mirip dengan hidupmu, atau polamu memang tidak terlalu kuat saat ini. Coba ulangi dengan konteks soal yang lain."
+            : "Jawabanmu tersebar ke banyak tipe, sehingga belum ada satu pola yang menonjol. Itu wajar, karena tiap orang bisa punya beberapa kecenderungan sekaligus.";
+        var top =
+          s[a] >= 2
+            ? "<p>Yang sedikit lebih sering muncul: <b>" +
+              ZT[a].name +
+              "</b>" +
+              (s[b] > 0 && s[b] === s[a]
+                ? " dan <b>" + ZT[b].name + "</b>"
+                : "") +
+              ".</p>"
+            : "";
+        window.__zsum = "Belum ada pola saboter yang menonjol dari kuisku.";
+        zb.innerHTML =
+          '<div class="zc"><div class="zmascot" style="background:#e9e5ff" aria-hidden="true">🌤️</div><h3 class="zh" style="font-size:1.5rem">Belum ada pola yang menonjol</h3></div><p>' +
+          msg +
+          "</p>" +
+          top +
+          zbars(s, nn) +
+          '<p class="zc" style="margin:1.2rem 0 0"><button class="btn y" data-act="copy">Salin hasil</button> <button class="btn o2" data-act="intro">Ulangi kuis</button></p>';
+        zgo();
+      }
+      function zlast() {
+        var d = null;
+        try {
+          d = JSON.parse(localStorage.getItem("zlast") || "null");
+        } catch (e) {}
+        return (
+          (d
+            ? '<p style="margin:1rem 0 0"><button class="btn o2" data-act="last">Lihat hasil terakhirku</button></p>'
+            : "") +
+          '<p class="zhint" style="margin:.8rem auto 0;max-width:30ch">Hasil hanya disimpan di perangkat ini dan tidak dikirim ke mana pun.</p>' +
+          (d
+            ? '<p style="margin:1.4rem 0 0;padding-top:1rem;border-top:1px dashed var(--line)"><button class="zlink" data-act="wipe" style="color:var(--muted);font-size:.9rem">Hapus data saya</button></p>'
+            : "")
+        );
+      }
+      function zrestore() {
+        var d = null;
+        try {
+          d = JSON.parse(localStorage.getItem("zlast") || "null");
+        } catch (e) {}
+        if (!d) return;
+        zans = [];
+        Object.keys(d).forEach(function (k) {
+          for (var i = 0; i < d[k]; i++) zans.push({ k: k, t: "" });
+        });
+        if (zans.length) zfinish();
+      }
+      function zshare(btn, a) {
+        var txt =
+          (window.__zsum || "") +
+          " Coba kuisnya di " +
+          (/claude(usercontent)?\.(ai|com)$/.test(location.hostname)
+            ? "https://claude.ai/artifact/HQzjgHYxNmbnvP8YJW1mdC"
+            : location.href.split("#")[0]);
+        function ok() {
+          var o = btn.textContent;
+          btn.textContent = "Tersalin ✓";
+          setTimeout(function () {
+            btn.textContent = o;
+          }, 1800);
+        }
+        function fb() {
+          var ta = document.createElement("textarea");
+          ta.value = txt;
+          ta.style.cssText =
+            "position:fixed;top:0;left:0;opacity:0;pointer-events:none";
+          ta.setAttribute("readonly", "");
+          document.body.appendChild(ta);
+          ta.focus({ preventScroll: true });
+          ta.select();
+          try {
+            document.execCommand("copy");
+            ok();
+          } catch (e) {
+            btn.textContent = "Gagal menyalin";
+          }
+          ta.remove();
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(ok, fb);
+        } else fb();
+      }
+      function zbars(s, nn) {
+        var r = Object.keys(s).sort(function (a, b) {
+          return s[b] - s[a];
+        });
+        return (
+          '<div class="zbars"><h4>Skor semua tipe</h4>' +
+          r
+            .map(function (k) {
+              return (
+                '<div class="zb"><span>' +
+                ZT[k].name.split(" (")[0] +
+                '</span><div class="zt"><i style="width:' +
+                (s[k] / 9) * 100 +
+                "%;background:" +
+                ZT[k].c +
+                '"></i></div><b>' +
+                s[k] +
+                "</b></div>"
+              );
+            })
+            .join("") +
+          (nn
+            ? '<div class="zb"><span>Tidak cocok</span><div class="zt"><i style="width:' +
+              (nn / 9) * 100 +
+              '%;background:var(--muted)"></i></div><b>' +
+              nn +
+              "</b></div>"
+            : "") +
+          '<p class="zhint" style="margin-top:.6rem">Skor yang tersebar itu wajar. Tiap orang bisa punya beberapa pola sekaligus, dan polanya bisa berubah menurut situasi.</p></div>'
+        );
+      }
+      (function () {
+        var r = document.documentElement,
+          m = document.getElementById("mtg");
+        try {
+          if (localStorage.getItem("motion") === "off")
+            r.setAttribute("data-motion", "off");
+        } catch (e) {}
+        function sync() {
+          var off = r.getAttribute("data-motion") === "off",
+            l = off ? "Nyalakan animasi" : "Matikan animasi";
+          m.setAttribute("aria-pressed", String(!off));
+          m.setAttribute("aria-label", l);
+          m.title = l;
+          m.querySelector(".tx").textContent = off
+            ? " Gerak: mati"
+            : " Gerak: hidup";
+        }
+        sync();
+        m.addEventListener("click", function () {
+          var off = r.getAttribute("data-motion") === "off";
+          if (off) r.removeAttribute("data-motion");
+          else r.setAttribute("data-motion", "off");
+          try {
+            localStorage.setItem("motion", off ? "on" : "off");
+          } catch (e) {}
+          sync();
+        });
+      })();
+      (function () {
+        var ls = document.querySelectorAll(".links a");
+        if (!("IntersectionObserver" in window)) return;
+        var map = {};
+        ls[0].parentNode.addEventListener(
+          "touchstart",
+          function () {
+            window.__nt = Date.now();
+          },
+          { passive: true },
+        );
+        ls.forEach(function (a) {
+          map[a.getAttribute("href").slice(1)] = a;
+        });
+        var io = new IntersectionObserver(
+          function (es) {
+            es.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              ls.forEach(function (a) {
+                a.classList.remove("cur");
+              });
+              var a = map[e.target.id];
+              if (a) {
+                a.classList.add("cur");
+                var p = a.parentNode;
+                if (Date.now() - (window.__nt || 0) > 2500) {
+                  var l = a.offsetLeft - p.clientWidth / 2 + a.clientWidth / 2;
+                  if (Math.abs(l - p.scrollLeft) > 40) p.scrollTo({ left: l });
+                }
+              }
+            });
+          },
+          { rootMargin: "-35% 0px -60% 0px" },
+        );
+        Object.keys(map).forEach(function (id) {
+          var s = document.getElementById(id);
+          if (s) io.observe(s);
+        });
+      })();
+      (function () {
+        var u = document.getElementById("up");
+        addEventListener(
+          "scroll",
+          function () {
+            u.hidden = scrollY < 600;
+          },
+          { passive: true },
+        );
+        u.addEventListener("click", function () {
+          scrollTo({ top: 0 });
+        });
+      })();
     </script>
   </body>
 </html>
